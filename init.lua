@@ -1,4 +1,3 @@
-
 landscapingstaff = {}
 landscapingstaff.nodes = {
 	{"default:dirt", "ethereal:green_moss"},
@@ -132,23 +131,25 @@ minetest.register_craft({
 
 humiditystaff = {}
 humiditystaff.nodes = {
-	{"default:dirt", "ethereal:green_moss"},
-	{"default:dirt_with_rainforest_litter", "ethereal:jungle_dirt"},
-	{"default:dirt_with_grass", "ethereal:green_moss"},
-	{"default:dirt_with_dry_grass", "default:dirt"},
-	{"default:dirt_with_coniferous_litter", "default:dirt"},
-	{"default:dirt_with_snow", "default:cold_dirt"},
+	{"default:snow", "default:river_water_source"},
+	{"default:ice", "default:river_water_source"},
+	{"farming:straw", "cottages:hay"},
+	{"default:coral_skeleton", "default:coral_brown"},
+	{"default:coral_brown", "default:coral_orange"},
+	{"default:dirt", "ethereal:crystal_dirt"},
 	{"default:permafrost", "default:permafrost_with_moss"},
 	{"default:permafrost_with_moss", "default:permafrost"},
-	{"ethereal:grove_dirt", "ethereal:prairie_dirt"},
-	{"ethereal:bamboo_dirt", "ethereal:grove_dirt"},
-	{"ethereal:prairie_dirt", "ethereal:cold_dirt"},
-	{"ethereal:cold_dirt", "ethereal:bamboo_dirt"},
-	{"ethereal:crystal_dirt", "ethereal:crystal_moss"},
-	{"ethereal:fiery_dirt", "ethereal:fiery_moss"},
-	{"ethereal:gray_dirt", "ethereal:gray_moss"},
-	{"ethereal:mushroom_dirt", "ethereal:mushroom_moss"},
-    {"ethereal:dry_dirt", "default:dirt_with_grass"},
+	{"ethereal:sakura_leaves", "ethereal:sakura_leaves2"},
+	{"morebricks:copper", "morebricks:copperaged"},
+    {"morebricks:cyan", "morebricks:cyanaged"},
+    {"morebricks:green", "morebricks:greenaged"},
+    {"morebricks:grey", "morebricks:greyaged"},
+    {"morebricks:magenta", "morebricks:magentaaged"},
+    {"morebricks:orange", "morebricks:orangeaged"},
+    {"morebricks:pink", "morebricks:pinkaged"},
+    {"morebricks:steel", "morebricks:steelaged"},
+    {"morebricks:yellow", "morebricks:yellowaged"},
+    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
 }
 
 minetest.register_tool("staffs:humiditystaff", {
