@@ -198,6 +198,9 @@ minetest.register_craft({
 	}
 })
 
+colorstaff = {}
+colorstaff.nodes = {
+    
 minetest.register_tool("staffs:colorstaff", {
 	description = "Staff of Color",
 	inventory_image = "color_staff.png",
@@ -241,5 +244,54 @@ minetest.register_craft({
 		{"xtraores:rainbow_block", "xtraores:rainbow_block", "xtraores:rainbow_block"},
 		{"xtraores:rarium_block", "xtraores:geminititum_block", "xtraores:rarium_block"},
 		{"", "xtraores:rainbow_wood", ""}
+	}
+})
+
+undostaff = {}
+undostaff.nodes = {
+    
+minetest.register_tool("staffs:undostaff", {
+	description = "Undo Staff",
+	inventory_image = "undo_staff.png",
+	wield_image = "undo_staff.png",
+	sound = {breaks = "default_tool_breaks"},
+	stack_max = 1,
+	liquids_pointable = true,
+	on_use = function(itemstack, user, pointed_thing)
+
+		if pointed_thing.type ~= "node" then
+			return
+		end
+
+		local pos = pointed_thing.under
+		local pname = user:get_player_name()
+
+		if minetest.is_protected(pos, pname) then
+			minetest.record_protection_violation(pos, pname)
+			return
+		end
+
+		local node = minetest.get_node(pos).name
+
+		for _, nouw in ipairs(undostaff.nodes) do
+			if node == nouw[1] then
+				minetest.swap_node(pos, {name = nouw[2]})
+
+				if not minetest.setting_getbool("creative_mode") then
+					itemstack:add_wear(65535 / 499) -- 500 uses
+				end
+
+				return itemstack
+			end
+		end
+	end,
+})
+
+minetest.register_craft({
+	output = "staffs:undostaff",
+	recipe = {
+		{"rhotator:cube", "rhotator:cube", "rhotator:cube"},
+		{"default:pick_diamond", "default:shovel_diamond", "default:axe_diamond"},
+		{"", "xtraores:unobtanium_block", ""}
 	}
 })
