@@ -1,25 +1,28 @@
-froststaff = {}
-froststaff.nodes = {
-	{"default:water_source", "default:ice"},
-	{"default:water_flowing", "default:ice"},
-	{"default:river_water_source", "default:ice"},
-	{"default:river_water_flowing", "default:ice"},
-	{"default:lava_source", "default:obsidian"},
-	{"default:lava_flowing", "underch:basalt"},
-	{"underch:black_slime_source", "default:ice"},
-	{"underch:black_slime_flowing", "default:ice"},
-	{"underch:green_slime_source", "default:ice"},
-	{"underch:green_slime_flowing", "default:ice"},
-	{"underch:red_slime_source", "default:ice"},
-	{"underch:red_slime_flowing", "default:ice"},
-	{"underch:purple_slime_source", "default:ice"},
-	{"underch:purple_slime_flowing", "default:ice"},
+landscapingstaff = {}
+landscapingstaff.nodes = {
+	{"default:dirt", "ethereal:green_moss"},
+	{"default:dirt_with_rainforest_litter", "ethereal:jungle_dirt"},
+	{"default:dirt_with_grass", "ethereal:green_moss"},
+	{"default:dirt_with_dry_grass", "default:dirt"},
+	{"default:dirt_with_coniferous_litter", "default:dirt"},
+	{"default:dirt_with_snow", "default:cold_dirt"},
+	{"default:permafrost", "default:permafrost_with_moss"},
+	{"default:permafrost_with_moss", "default:permafrost"},
+	{"ethereal:grove_dirt", "ethereal:prairie_dirt"},
+	{"ethereal:bamboo_dirt", "ethereal:grove_dirt"},
+	{"ethereal:prairie_dirt", "ethereal:cold_dirt"},
+	{"ethereal:cold_dirt", "ethereal:bamboo_dirt"},
+	{"ethereal:crystal_dirt", "ethereal:crystal_moss"},
+	{"ethereal:fiery_dirt", "ethereal:fiery_moss"},
+	{"ethereal:gray_dirt", "ethereal:gray_moss"},
+	{"ethereal:mushroom_dirt", "ethereal:mushroom_moss"},
+    {"ethereal:dry_dirt", "default:dirt_with_grass"},
 }
 
-minetest.register_tool("froststaff:staff", {
-	description = "Staff of Frost",
-	inventory_image = "froststaff_staff.png",
-	wield_image = "froststaff_staff.png",
+minetest.register_tool("staffs:landscapingstaff", {
+	description = "Landscaping Staff",
+	inventory_image = "landscapingstaff.png",
+	wield_image = "landscapingstaff.png",
 	sound = {breaks = "default_tool_breaks"},
 	stack_max = 1,
 	liquids_pointable = true,
@@ -39,7 +42,7 @@ minetest.register_tool("froststaff:staff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, nouw in ipairs(froststaff.nodes) do
+		for _, nouw in ipairs(landscapingstaff.nodes) do
 			if node == nouw[1] then
 				minetest.swap_node(pos, {name = nouw[2]})
 
@@ -54,11 +57,11 @@ minetest.register_tool("froststaff:staff", {
 })
 
 minetest.register_craft({
-	output = "froststaff:staff",
+	output = "staffs:landscaping_staff",
 	recipe = {
-		{"underch:black_bucket", "default:ice", "underch:red_bucket"},
-		{"underch:green_bucket", "default:ice", "underch:purple_bucket"},
-		{"", "default:ice", ""}
+		{"bucket:bucket_lava", "bucket:bucket_river_water", "ethereal:bucket_cactus"},
+		{"default:diamondblock", "default:obsidian", "default:diamondblock"},
+		{"", "default:obsidian", ""}
 	}
 })
 
