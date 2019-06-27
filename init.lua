@@ -276,6 +276,34 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craftitem("staffs:growstaff", {
+	description = S("Fertiliser"),
+	inventory_image = "grow_staff.png",
+
+	on_use = function(itemstack, user, pointed_thing)
+
+		-- did we point at a node?
+		if pointed_thing.type ~= "node" then
+			return
+		end
+
+		-- is area protected?
+		if minetest.is_protected(pointed_thing.under, user:get_player_name()) then
+			return
+		end
+
+		-- take item if not in creative
+		if not is_creative(user:get_player_name()) then
+			itemstack:take_item()
+		end
+
+		-- call global on_use function with strength of 3
+		growstaff:on_use(pointed_thing.under, 3)
+
+		return itemstack
+	end,
+})
+
 humiditystaff = {}
 humiditystaff.nodes = {
 	{"default:dirt", "ethereal:green_moss"},
