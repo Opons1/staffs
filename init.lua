@@ -342,3 +342,4 @@ minetest.register_craft({
 		{"", "default:obsidian", ""}
 	}
 })
+end
