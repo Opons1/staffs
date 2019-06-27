@@ -1,3 +1,17 @@
+local saplings = {
+	{"default:sapling", default.grow_new_apple_tree, "soil"},
+	{"default:junglesapling", default.grow_new_jungle_tree, "soil"},
+	{"default:emergent_jungle_sapling", default.grow_new_emergent_jungle_tree, "soil"},
+	{"default:acacia_sapling", default.grow_new_acacia_tree, "soil"},
+	{"default:aspen_sapling", default.grow_new_aspen_tree, "soil"},
+	{"default:pine_sapling", pine_grow, "soil"},
+	{"default:bush_sapling", default.grow_bush, "soil"},
+	{"default:acacia_bush_sapling", default.grow_acacia_bush, "soil"},
+	{"default:large_cactus_seedling", default.grow_large_cactus, "sand"},
+	{"default:blueberry_bush_sapling", default.grow_blueberry_bush, "soil"},
+	{"default:pine_bush_sapling", default.grow_pine_bush, "soil"},
+}
+
 local function particle_effect(pos)
 
 	minetest.add_particlespawner({
@@ -13,9 +27,12 @@ local function particle_effect(pos)
 		maxexptime = 1,
 		minsize = 1,
 		maxsize = 3,
+		texture = "bonemeal_particle.png",
 	})
 end
 
+
+-- tree type check
 local function grow_tree(pos, object)
 
 	if type(object) == "table" and object.axiom then
@@ -33,6 +50,8 @@ local function grow_tree(pos, object)
 	end
 end
 
+
+-- sapling check
 local function check_sapling(pos, nodename)
 
 	-- what is sapling placed on?
@@ -82,6 +101,42 @@ local function check_sapling(pos, nodename)
 		end
 	end
 end
+
+function growstaff:add_sapling(list)
+
+	for n = 1, #list do
+		table.insert(saplings, list[n])
+	end
+end
+
+function growstaff:on_use(pos, strength, node)
+
+	-- get node pointed at
+	local node = node or minetest.get_node(pos)
+
+	-- return if nothing there
+	if node.name == "ignore" then
+		return
+	end
+
+	-- make sure strength is between 1 and 4
+	strength = strength or 1
+	strength = math.max(strength, 1)
+	strength = math.min(strength, 4)
+
+	-- papyrus and cactus
+	if node.name == "default:papyrus" then
+
+		default.grow_papyrus(pos, node)
+		particle_effect(pos)
+		return
+
+	elseif node.name == "default:cactus" then
+
+		default.grow_cactus(pos, node)
+		particle_effect(pos)
+		return
+	end
 
 landscapingstaff = {}
 landscapingstaff.nodes = {
@@ -152,16 +207,6 @@ minetest.register_craft({
 
 growstaff = {}
 growstaff.nodes = {
-    {"default:sapling", "default.grow_new_apple_tree"},
-	{"default:junglesapling", "default.grow_new_jungle_tree"},
-	{"default:emergent_jungle_sapling", default.grow_new_emergent_jungle_tree(pos)},
-	{"default:acacia_sapling", "default.grow_new_acacia_tree"},
-	{"default:aspen_sapling", "default.grow_new_aspen_tree"},
-	{"default:pine_sapling", "pine_grow"},
-	{"default:bush_sapling", "default.grow_bush"},
-	{"default:acacia_bush_sapling", "default.grow_acacia_bush"},
-	{"default:large_cactus_seedling", "default.grow_large_cactus"},
-	{"default:blueberry_bush_sapling", "default.grow_blueberry_bush"},
 	{"moretrees:apple_tree_sapling", "moretrees:apple_tree_sapling_ongen"},
 	{"moretrees:beech_sapling", "moretrees:beech_sapling_ongen"},
 	{"moretrees:birch_sapling", "moretrees:birch_sapling_ongen"},
