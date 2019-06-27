@@ -42,9 +42,9 @@ minetest.register_tool("staffs:landscapingstaff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, nouw in ipairs(landscapingstaff.nodes) do
-			if node == nouw[1] then
-				minetest.swap_node(pos, {name = nouw[2]})
+		for _, now in ipairs(landscapingstaff.nodes) do
+			if node == now[1] then
+				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:add_wear(65535 / 499) -- 500 uses
@@ -106,9 +106,9 @@ minetest.register_tool("staffs:growstaff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, nouw in ipairs(growstaff.nodes) do
-			if node == nouw[1] then
-				minetest.swap_node(pos, {name = nouw[2]})
+		for _, now in ipairs(growstaff.nodes) do
+			if node == now[1] then
+				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:add_wear(65535 / 29) -- 30 uses
@@ -150,6 +150,13 @@ humiditystaff.nodes = {
     {"morebricks:steel", "morebricks:steelaged"},
     {"morebricks:yellow", "morebricks:yellowaged"},
     {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+    {"underch:andesite", "underch:andesite_mossy_cobble"},
+    {"underch:amphibolite_cobble", "underc:amphibolite_mossy_cobble"},
+    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
 }
 
 minetest.register_tool("staffs:humiditystaff", {
@@ -175,9 +182,9 @@ minetest.register_tool("staffs:humiditystaff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, nouw in ipairs(humiditystaff.nodes) do
-			if node == nouw[1] then
-				minetest.swap_node(pos, {name = nouw[2]})
+		for _, now in ipairs(humiditystaff.nodes) do
+			if node == now[1] then
+				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:add_wear(65535 / 499) -- 500 uses
@@ -224,9 +231,9 @@ minetest.register_tool("staffs:colorstaff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, nouw in ipairs(colorstaff.nodes) do
-			if node == nouw[1] then
-				minetest.swap_node(pos, {name = nouw[2]})
+		for _, now in ipairs(colorstaff.nodes) do
+			if node == now[1] then
+				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:add_wear(65535 / 499) -- 500 uses
@@ -273,9 +280,9 @@ minetest.register_tool("staffs:undostaff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, nouw in ipairs(undostaff.nodes) do
-			if node == nouw[1] then
-				minetest.swap_node(pos, {name = nouw[2]})
+		for _, now in ipairs(undostaff.nodes) do
+			if node == now[1] then
+				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:add_wear(65535 / 499) -- 500 uses
