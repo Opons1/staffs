@@ -69,7 +69,7 @@ growstaff = {}
 growstaff.nodes = {
     {"default:sapling", "default.grow_new_apple_tree"},
 	{"default:junglesapling", "default.grow_new_jungle_tree"},
-	{"default:emergent_jungle_sapling", "default.grow_new_emergent_jungle_tree"},
+	{"default:emergent_jungle_sapling", default.grow_new_emergent_jungle_tree(pos)},
 	{"default:acacia_sapling", "default.grow_new_acacia_tree"},
 	{"default:aspen_sapling", "default.grow_new_aspen_tree"},
 	{"default:pine_sapling", "pine_grow"},
