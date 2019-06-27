@@ -67,24 +67,38 @@ minetest.register_craft({
 
 growstaff = {}
 growstaff.nodes = {
-	{"default:dirt", "ethereal:green_moss"},
-	{"default:dirt_with_rainforest_litter", "ethereal:jungle_dirt"},
-	{"default:dirt_with_grass", "ethereal:green_moss"},
-	{"default:dirt_with_dry_grass", "default:dirt"},
-	{"default:dirt_with_coniferous_litter", "default:dirt"},
-	{"default:dirt_with_snow", "default:cold_dirt"},
-	{"default:permafrost", "default:permafrost_with_moss"},
-	{"default:permafrost_with_moss", "default:permafrost"},
-	{"ethereal:grove_dirt", "ethereal:prairie_dirt"},
-	{"ethereal:bamboo_dirt", "ethereal:grove_dirt"},
-	{"ethereal:prairie_dirt", "ethereal:cold_dirt"},
-	{"ethereal:cold_dirt", "ethereal:bamboo_dirt"},
-	{"ethereal:crystal_dirt", "ethereal:crystal_moss"},
-	{"ethereal:fiery_dirt", "ethereal:fiery_moss"},
-	{"ethereal:gray_dirt", "ethereal:gray_moss"},
-	{"ethereal:mushroom_dirt", "ethereal:mushroom_moss"},
-    {"ethereal:dry_dirt", "default:dirt_with_grass"},
-}
+    {"default:sapling", "default.grow_new_apple_tree"},
+	{"default:junglesapling", "default.grow_new_jungle_tree"},
+	{"default:emergent_jungle_sapling", "default.grow_new_emergent_jungle_tree"},
+	{"default:acacia_sapling", "default.grow_new_acacia_tree"},
+	{"default:aspen_sapling", "default.grow_new_aspen_tree"},
+	{"default:pine_sapling", "pine_grow"},
+	{"default:bush_sapling", "default.grow_bush"},
+	{"default:acacia_bush_sapling", "default.grow_acacia_bush"},
+	{"default:large_cactus_seedling", "default.grow_large_cactus"},
+	{"default:blueberry_bush_sapling", "default.grow_blueberry_bush"},
+	{"moretrees:apple_tree_sapling", "moretrees:apple_tree_sapling_ongen"},
+	{"moretrees:beech_sapling", "moretrees:beech_sapling_ongen"},
+	{"moretrees:birch_sapling", "moretrees:birch_sapling_ongen"},
+	{"moretrees:cedar_sapling", "moretrees:cedar_sapling_ongen"},
+	{"moretrees:date_palm_sapling", "moretrees:date_palm_sapling_ongen"},
+	{"moretrees:fir_sapling", "moretrees:fir_sapling_ongen"},
+	{"moretrees:oak_sapling", "moretrees:oak_sapling_ongen"},
+	{"moretrees:palm_sapling", "moretrees:palm_sapling_ongen"},
+	{"moretrees:poplar_sapling", "moretrees:poplar_sapling_ongen"},
+	{"moretrees:poplar_small_sapling", "moretrees:poplar_small_sapling_ongen"},
+	{"moretrees:rubber_tree_sapling", "moretrees:rubber_tree_sapling_ongen"},
+	{"moretrees:sequioa_sapling", "moretrees:seqouia_sapling_ongen"},
+	{"moretrees:spruce_sapling", "moretrees:spruce_sapling_ongen"},
+	{"moretrees:willow_sapling", "moretrees:willow_sapling_ongen"},
+}    
+
+
+if growstaff.nodes then
+particle_effect(pos)
+				grow_tree(pos, saplings[n][2])
+				return
+			end
 
 minetest.register_tool("staffs:growstaff", {
 	description = "Super-Grow Staff",
