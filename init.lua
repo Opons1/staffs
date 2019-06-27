@@ -95,7 +95,7 @@ growstaff.nodes = {
 
 
 if growstaff.nodes then
-particle_effect(pos)
+particle_effect(x.y-1,z)
 				grow_tree(pos, saplings[n][2])
 				return
 			end
