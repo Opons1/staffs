@@ -47,7 +47,7 @@ minetest.register_tool("staffs:landscapingstaff", {
 				minetest.swap_node(pos, {name = nouw[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
-					itemstack:add_wear(65535 / 149) -- 150 uses
+					itemstack:add_wear(65535 / 499) -- 500 uses
 				end
 
 				return itemstack
@@ -114,7 +114,7 @@ minetest.register_tool("staffs:growstaff", {
 				minetest.swap_node(pos, {name = nouw[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
-					itemstack:add_wear(65535 / 30) -- 150 uses
+					itemstack:add_wear(65535 / 29) -- 30 uses
 				end
 
 				return itemstack
