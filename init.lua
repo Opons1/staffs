@@ -1,3 +1,88 @@
+local function particle_effect(pos)
+
+	minetest.add_particlespawner({
+		amount = 4,
+		time = 0.15,
+		minpos = pos,
+		maxpos = pos,
+		minvel = {x = -1, y = 2, z = -1},
+		maxvel = {x = 1, y = 4, z = 1},
+		minacc = {x = -1, y = -1, z = -1},
+		maxacc = {x = 1, y = 1, z = 1},
+		minexptime = 1,
+		maxexptime = 1,
+		minsize = 1,
+		maxsize = 3,
+	})
+end
+
+local function grow_tree(pos, object)
+
+	if type(object) == "table" and object.axiom then
+		-- grow L-system tree
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, object)
+
+	elseif type(object) == "string" and minetest.registered_nodes[object] then
+		-- place node
+		minetest.set_node(pos, {name = object})
+
+	elseif type(object) == "function" then
+		-- function
+		object(pos)
+	end
+end
+
+local function check_sapling(pos, nodename)
+
+	-- what is sapling placed on?
+	local under =  minetest.get_node({
+		x = pos.x,
+		y = pos.y - 1,
+		z = pos.z
+	})
+
+	local can_grow, grow_on
+
+	-- check list for sapling and function
+	for n = 1, #saplings do
+
+		if saplings[n][1] == nodename then
+
+			grow_on = saplings[n][3]
+
+			-- sapling grows on top of specific node
+			if grow_on
+			and grow_on ~= "soil"
+			and grow_on ~= "sand"
+			and grow_on == under.name then
+				can_grow = true
+			end
+
+			-- sapling grows on top of soil (default)
+			if can_grow == nil
+			and (grow_on == nil or grow_on == "soil")
+			and minetest.get_item_group(under.name, "soil") > 0 then
+				can_grow = true
+			end
+
+			-- sapling grows on top of sand
+			if can_grow == nil
+			and grow_on == "sand"
+			and minetest.get_item_group(under.name, "sand") > 0 then
+				can_grow = true
+			end
+
+			-- check if we can grow sapling
+			if can_grow then
+				particle_effect(pos)
+				grow_tree(pos, saplings[n][2])
+				return
+			end
+		end
+	end
+end
+
 landscapingstaff = {}
 landscapingstaff.nodes = {
 	{"default:dirt", "ethereal:green_moss"},
@@ -95,7 +180,7 @@ growstaff.nodes = {
 
 
 if growstaff.nodes then
-particle_effect(x.y-1,z)
+particle_effect(pos)
 				grow_tree(pos, saplings[n][2])
 				return
 			end
