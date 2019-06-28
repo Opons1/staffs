@@ -150,13 +150,22 @@ humiditystaff.nodes = {
     {"morebricks:steel", "morebricks:steelaged"},
     {"morebricks:yellow", "morebricks:yellowaged"},
     {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:andesite", "underch:andesite_mossy_cobble"},
-    {"underch:amphibolite_cobble", "underc:amphibolite_mossy_cobble"},
+    {"underch:andesite_cobble", "underch:andesite_mossy_cobble"},
+    {"underch:aplite_cobble", "underch:aplite_mossy_cobble"},
+    {"underch:basalt_cobble", "underch:basalt_mossy_cobble"},
+    {"underch:dark_vindesite_cobble", "underch:dark_vindesite_mossy_cobble"},
+    {"underch:diorite_cobble", "underch:diorite_mossy_cobble"},
+    {"underch:dolomite_cobble", "underch:dolomite_mossy_cobble"},
+    {"underch:marble_cobble", "underch:marble_mossy_cobble"},
+    {"default:dirt", "underch:mossy_dirt"},
+    {"default:gravel", "underch:mossy_gravel"},
+    {"underch:pegmatite_cobble", "underch:pegmatite_mossy_cobble"},
+    {"underch:peridotite_cobble", "underch:peridotite_mossy_cobble"},
     {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
     {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
     {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
     {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+    
 }
 
 minetest.register_tool("staffs:humiditystaff", {
