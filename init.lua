@@ -310,8 +310,6 @@ mysterystaff.nodes = {
     {"technic:uranium35block", "staffs:strange_dust"},
     {"default:lava_source", "underch:lava_crack"},
     {"technic:concrete", "technic:blast_resistant_concrete"},
-    {"underch:lava_crack", "ethereal:bamboo_block"},
-    {"ethereal:bamboo", "ethereal:bamboo_block"},
 }
     
 minetest.register_tool("staffs:mysterystaff", {
