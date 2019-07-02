@@ -379,12 +379,12 @@ minetest.register_node ("staffs:strange_gravel", {
 technic.register_separating_recipe({ input = {"staffs:strange_gravel"}, output = {"default:gravel", "staffs:plutonium_lump"}, time = 80 })
 technic.register_separating_recipe({ input = {"staffs:strange_dust"}, output = {"underch:dust", "staffs:californium252_dust"}, time = 120 })
 
-minetest.register_ore ("staffs:plutonium_lump", {
+minetest.register_craftitem ("staffs:plutonium_lump", {
     description = "Plutonium Lump",
     inventory_image = "plutonium_lump.png",
 })
 
-minetest.register_ore ("staffs:californium252_dust", {
+minetest.register_craftitem ("staffs:californium252_dust", {
     description = "Californium 252 Dust",
     inventory_image = "californium252_dust.png",
 })
