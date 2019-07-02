@@ -160,12 +160,13 @@ humiditystaff.nodes = {
     {"default:dirt", "underch:mossy_dirt"},
     {"default:gravel", "underch:mossy_gravel"},
     {"underch:pegmatite_cobble", "underch:pegmatite_mossy_cobble"},
-    {"underch:peridotite_cobble", "underch:peridotite_mossy_cobble"},
-    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    
+    {"underch:phonolite_cobble", "underch:phonolite_mossy_cobble"},
+    {"underch:phylite_cobble", "underch:phylite_mossy_cobble"},
+    {"underch:quartzite_cobble", "underch:amphibolite_mossy_cobble"},
+    {"underch:schist_cobble", "underch:schist_mossy_cobble"},
+    {"default:cobble", "default:mossycobble"},
+    {"underch:slate_cobble", "underch:slate_mossy_cobble"},
+    {"underch:vindesite_cobble", "underch:vindesite_mossy_cobble"},
 }
 
 minetest.register_tool("staffs:humiditystaff", {
@@ -263,13 +264,13 @@ minetest.register_craft({
 	}
 })
 
-undostaff = {}
-undostaff.nodes = {
+mysterystaff = {}
+mysterystaff.nodes = {
     
-minetest.register_tool("staffs:undostaff", {
-	description = "Undo Staff",
-	inventory_image = "undo_staff.png",
-	wield_image = "undo_staff.png",
+minetest.register_tool("staffs:mysterystaff", {
+	description = "Staff of Mystery",
+	inventory_image = "mystery_staff.png",
+	wield_image = "mystery_staff.png",
 	sound = {breaks = "default_tool_breaks"},
 	stack_max = 1,
 	liquids_pointable = true,
@@ -289,12 +290,12 @@ minetest.register_tool("staffs:undostaff", {
 
 		local node = minetest.get_node(pos).name
 
-		for _, now in ipairs(undostaff.nodes) do
+		for _, now in ipairs(mysterystaff.nodes) do
 			if node == now[1] then
 				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
-					itemstack:add_wear(65535 / 499) -- 500 uses
+					itemstack:add_wear(65535 / 14) -- 15 uses
 				end
 
 				return itemstack
@@ -304,7 +305,7 @@ minetest.register_tool("staffs:undostaff", {
 })
 
 minetest.register_craft({
-	output = "staffs:undostaff",
+	output = "staffs:mysterystaff",
 	recipe = {
 		{"rhotator:cube", "rhotator:cube", "rhotator:cube"},
 		{"default:pick_diamond", "default:shovel_diamond", "default:axe_diamond"},
