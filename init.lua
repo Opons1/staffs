@@ -123,7 +123,7 @@ minetest.register_tool("staffs:growstaff", {
 minetest.register_craft({
 	output = "staffs:growstaff",
 	recipe = {
-		{"bonemeal:fertilizer", "bonemeal:fertilizer", "bonemeal:fertilizer"},
+		{"bonemeal:fertiliser", "bonemeal:fertiliser", "bonemeal:fertiliser"},
 		{"ethereal:crystal_block", "default:obsidian", "ethereal:crystal_block"},
 		{"", "default:obsidian", ""}
 	}
@@ -295,7 +295,7 @@ minetest.register_craft({
 	output = "staffs:colorstaff",
 	recipe = {
 		{"xtraores_rainbow:rainbow", "xtraores_rainbow:rainbow", "xtraores_rainbow:rainbow"},
-		{"xtraores_rainbow:rainbow", "xtraores:geminititum_block", "xtraores_rainbow:rainbow"},
+		{"xtraores_rainbow:rainbow", "xtraores:geminitinum_block", "xtraores_rainbow:rainbow"},
 		{"", "xtraores_rainbow:wood", ""}
 	}
 })
@@ -354,7 +354,7 @@ minetest.register_craft({
 	recipe = {
 		{"rhotator:cube", "rhotator:cube", "rhotator:cube"},
 		{"default:pick_diamond", "default:shovel_diamond", "default:axe_diamond"},
-		{"", "xtraores:unobtanium_block", ""}
+		{"", "xtraores:unobtainium_block", ""}
 	}
 })
 
