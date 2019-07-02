@@ -217,6 +217,39 @@ minetest.register_craft({
 
 colorstaff = {}
 colorstaff.nodes = {
+    {"wool:black", "wool:blue"},
+    {"wool:blue", "wool:brown"},
+    {"wool:brown", "wool:cyan"},
+    {"wool:cyan", "wool:dark_green"},
+    {"wool:dark_green", "wool:dark_grey"},
+    {"wool:dark_grey", "wool:green"},
+    {"wool:green", "wool:grey"},
+    {"wool:grey", "wool:magenta"},
+    {"wool:magenta", "wool:orange"},
+    {"wool:orange", "wool:pink"},
+    {"wool:pink", "wool:red"},
+    {"wool:red", "wool:violet"},
+    {"wool:violet", "wool:white"},
+    {"wool:white", "wool:yellow"},
+    {"wool:yellow", "wool:black"},
+    {"bakedclay:black", "bakedclay:blue"},
+    {"bakedclay:blue", "bakedclay:brown"},
+    {"bakedclay:brown", "bakedclay:cyan"},
+    {"bakedclay:cyan", "bakedclay:dark_green"},
+    {"bakedclay:dark_green", "bakedclay:dark_grey"},
+    {"bakedclay:dark_grey", "bakedclay:green"},
+    {"bakedclay:green", "bakedclay:grey"},
+    {"bakedclay:grey", "bakedclay:magenta"},
+    {"bakedclay:magenta", "bakedclay:orange"},
+    {"bakedclay:orange", "bakedclay:pink"},
+    {"bakedclay:pink", "bakedclay:red"},
+    {"bakedclay:red", "bakedclay:violet"},
+    {"bakedclay:violet", "bakedclay:white"},
+    {"bakedclay:white", "bakedclay:yellow"},
+    {"bakedclay:yellow", "bakedclay:black"},
+    {"default:glass", "xtraores_rainbow:glass"},
+    {"default:wood", "xtraores_rainbow:wood"},
+}
     
 minetest.register_tool("staffs:colorstaff", {
 	description = "Staff of Color",
@@ -258,9 +291,9 @@ minetest.register_tool("staffs:colorstaff", {
 minetest.register_craft({
 	output = "staffs:colorstaff",
 	recipe = {
-		{"xtraores:rainbow_block", "xtraores:rainbow_block", "xtraores:rainbow_block"},
-		{"xtraores:rarium_block", "xtraores:geminititum_block", "xtraores:rarium_block"},
-		{"", "xtraores:rainbow_wood", ""}
+		{"xtraores_rainbow:rainbow", "xtraores_rainbow:rainbow", "xtraores_rainbow:rainbow"},
+		{"xtraores_rainbow:rainbow", "xtraores:geminititum_block", "xtraores_rainbow:rainbow"},
+		{"", "xtraores_rainbow:wood", ""}
 	}
 })
 
