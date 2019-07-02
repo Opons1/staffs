@@ -357,3 +357,34 @@ minetest.register_craft({
 		{"", "xtraores:unobtanium_block", ""}
 	}
 })
+
+minetest.register_node ("staffs:strange_dust", {
+    description = S("Strange Dust"),
+    tiles = {"strange_dust.png"},
+    is_ground_content = false,
+    sounds = default.node_sound_stone_defaults(),
+    groups = {cracky = 2, level = 1},
+    light_source = 4,
+})
+
+minetest.register_node ("staffs:strange_gravel", {
+    description = S("Strange Gravel"),
+    tiles = {"strange_gravel.png"},
+    is_ground_content = false,
+    sounds = default.node_sound_stone_defaults(),
+    groups = {cracky = 2, level = 1},
+    light_source = 4,
+})
+
+technic.register_separating_recipe({ input = {"staffs:strange_gravel"}, output = {"default:gravel", "staffs:plutonium_lump"}, time = 80 })
+technic.register_separating_recipe({ input = {"staffs:strange_dust"}, output = {"underch:dust", "staffs:californium252_dust"}, time = 120 })
+
+minetest.register_ore ("staffs:plutonium_lump", {
+    description = S("Plutonium Lump"),
+    inventory_image = "plutonium_lump.png",
+})
+
+minetest.register_ore ("staffs:californium252_dust", {
+    description = S("Californium 252 Dust"),
+    inventory_image = "californium252_dust.png",
+})
