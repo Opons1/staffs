@@ -249,6 +249,9 @@ colorstaff.nodes = {
     {"bakedclay:yellow", "bakedclay:black"},
     {"default:glass", "xtraores_rainbow:glass"},
     {"default:wood", "xtraores_rainbow:wood"},
+    {"ethereal:illumishroom", "ethereal:illumishroom2"},
+    {"ethereal:illumishroom2", "ethereal:illumishroom3"},
+    {"ethereal:illumishroom3", "ethereal:illumishroom"},
 }
     
 minetest.register_tool("staffs:colorstaff", {
@@ -299,6 +302,17 @@ minetest.register_craft({
 
 mysterystaff = {}
 mysterystaff.nodes = {
+    {"technic:lead_block", "underch:gold_dense_ore"},
+    {"ethereal:bamboo", "ethereal:bamboo_block"},
+    {"moretrees:rubber_tree_trunk_empty", "moretrees:rubber_tree_trunk"},
+    {"technic:corium_source", "staffs:strange_dust"},
+    {"technic:nuclear_reactor_core_active", "staffs:strange_gravel"},
+    {"technic:uranium35block", "staffs:strange_dust"},
+    {"default:lava_source", "underch:lava_crack"},
+    {"technic:concrete", "technic:blast_resistant_concrete"},
+    {"underch:lava_crack", "ethereal:bamboo_block"},
+    {"ethereal:bamboo", "ethereal:bamboo_block"},
+}
     
 minetest.register_tool("staffs:mysterystaff", {
 	description = "Staff of Mystery",
@@ -328,7 +342,7 @@ minetest.register_tool("staffs:mysterystaff", {
 				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
-					itemstack:add_wear(65535 / 14) -- 15 uses
+					itemstack:add_wear(65535 / 29) -- 30 uses
 				end
 
 				return itemstack
