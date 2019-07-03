@@ -307,7 +307,7 @@ mysterystaff.nodes = {
     {"moretrees:rubber_tree_trunk_empty", "moretrees:rubber_tree_trunk"},
     {"technic:corium_source", "staffs:strange_dust"},
     {"technic:nuclear_reactor_core_active", "staffs:strange_gravel"},
-    {"technic:uranium35block", "staffs:strange_dust"},
+    {"technic:uranium35_block", "staffs:strange_dust"},
     {"default:lava_source", "underch:lava_crack"},
     {"technic:concrete", "technic:blast_resistant_concrete"},
 }
