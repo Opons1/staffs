@@ -16,7 +16,7 @@ landscapingstaff.nodes = {
 	{"ethereal:fiery_dirt", "ethereal:fiery_moss"},
 	{"ethereal:gray_dirt", "ethereal:gray_moss"},
 	{"ethereal:mushroom_dirt", "ethereal:mushroom_moss"},
-    {"ethereal:dry_dirt", "default:dirt_with_grass"},
+        {"ethereal:dry_dirt", "default:dirt_with_grass"},
 }
 
 minetest.register_tool("staffs:landscapingstaff", {
@@ -65,6 +65,7 @@ minetest.register_craft({
 	}
 })
 
+growstaff_uses = 100
 growstaff = {}
 growstaff.nodes = {
 	{"moretrees:apple_tree_sapling", "moretrees:apple_tree_sapling_ongen"},
@@ -98,24 +99,48 @@ minetest.register_tool("staffs:growstaff", {
 
 		local pos = pointed_thing.under
 		local pname = user:get_player_name()
-
+		
 		if minetest.is_protected(pos, pname) then
 			minetest.record_protection_violation(pos, pname)
 			return
 		end
 
 		local node = minetest.get_node(pos).name
+		local possibly_growable_node = minetest.get_item_group(node, "soil") + minetest.get_item_group(node, "sand") + minetest.get_item_group(node, "can_bonemeal") + minetest.get_item_group(node, "sapling") + minetest.get_item_group(node, "plant")
+
+		if possibly_growable_node == 0 then
+			return
+		end
 
 		for _, now in ipairs(growstaff.nodes) do
 			if node == now[1] then
 				minetest.swap_node(pos, {name = now[2]})
 
 				if not minetest.setting_getbool("creative_mode") then
-					itemstack:add_wear(65535 / 29) -- 30 uses
+					itemstack:add_wear(65535 / growstaff_uses)
 				end
 
 				return itemstack
 			end
+		end
+		
+		
+		-- reduced growth grass and flowers (single block, but less wear)
+		if minetest.get_item_group(node, "soil") > 0
+		or minetest.get_item_group(node, "can_bonemeal") > 0
+                or minetest.get_item_group(node.name, "sand") > 0 then
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:add_wear(65535 /(growstaff_uses*4)) 
+			end
+			bonemeal:on_use(pos, 1)
+			return itemstack
+		else
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:add_wear(65535 / growstaff_uses) 
+			end
+			-- instant growth for saplings, crops etc.
+			bonemeal:on_use(pos, 3)
+			return itemstack
 		end
 	end,
 })
@@ -141,32 +166,32 @@ humiditystaff.nodes = {
 	{"default:permafrost_with_moss", "default:permafrost"},
 	{"ethereal:sakura_leaves", "ethereal:sakura_leaves2"},
 	{"morebricks:copper", "morebricks:copperaged"},
-    {"morebricks:cyan", "morebricks:cyanaged"},
-    {"morebricks:green", "morebricks:greenaged"},
-    {"morebricks:grey", "morebricks:greyaged"},
-    {"morebricks:magenta", "morebricks:magentaaged"},
-    {"morebricks:orange", "morebricks:orangeaged"},
-    {"morebricks:pink", "morebricks:pinkaged"},
-    {"morebricks:steel", "morebricks:steelaged"},
-    {"morebricks:yellow", "morebricks:yellowaged"},
-    {"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:andesite_cobble", "underch:andesite_mossy_cobble"},
-    {"underch:aplite_cobble", "underch:aplite_mossy_cobble"},
-    {"underch:basalt_cobble", "underch:basalt_mossy_cobble"},
-    {"underch:dark_vindesite_cobble", "underch:dark_vindesite_mossy_cobble"},
-    {"underch:diorite_cobble", "underch:diorite_mossy_cobble"},
-    {"underch:dolomite_cobble", "underch:dolomite_mossy_cobble"},
-    {"underch:marble_cobble", "underch:marble_mossy_cobble"},
-    {"default:dirt", "underch:mossy_dirt"},
-    {"default:gravel", "underch:mossy_gravel"},
-    {"underch:pegmatite_cobble", "underch:pegmatite_mossy_cobble"},
-    {"underch:phonolite_cobble", "underch:phonolite_mossy_cobble"},
-    {"underch:phylite_cobble", "underch:phylite_mossy_cobble"},
-    {"underch:quartzite_cobble", "underch:amphibolite_mossy_cobble"},
-    {"underch:schist_cobble", "underch:schist_mossy_cobble"},
-    {"default:cobble", "default:mossycobble"},
-    {"underch:slate_cobble", "underch:slate_mossy_cobble"},
-    {"underch:vindesite_cobble", "underch:vindesite_mossy_cobble"},
+	{"morebricks:cyan", "morebricks:cyanaged"},
+	{"morebricks:green", "morebricks:greenaged"},
+	{"morebricks:grey", "morebricks:greyaged"},
+	{"morebricks:magenta", "morebricks:magentaaged"},
+	{"morebricks:orange", "morebricks:orangeaged"},
+	{"morebricks:pink", "morebricks:pinkaged"},
+	{"morebricks:steel", "morebricks:steelaged"},
+	{"morebricks:yellow", "morebricks:yellowaged"},
+	{"underch:amphibolite_cobble", "underch:amphibolite_mossy_cobble"},
+	{"underch:andesite_cobble", "underch:andesite_mossy_cobble"},
+	{"underch:aplite_cobble", "underch:aplite_mossy_cobble"},
+	{"underch:basalt_cobble", "underch:basalt_mossy_cobble"},
+	{"underch:dark_vindesite_cobble", "underch:dark_vindesite_mossy_cobble"},
+	{"underch:diorite_cobble", "underch:diorite_mossy_cobble"},
+	{"underch:dolomite_cobble", "underch:dolomite_mossy_cobble"},
+	{"underch:marble_cobble", "underch:marble_mossy_cobble"},
+	{"default:dirt", "underch:mossy_dirt"},
+	{"default:gravel", "underch:mossy_gravel"},
+	{"underch:pegmatite_cobble", "underch:pegmatite_mossy_cobble"},
+	{"underch:phonolite_cobble", "underch:phonolite_mossy_cobble"},
+	{"underch:phylite_cobble", "underch:phylite_mossy_cobble"},
+	{"underch:quartzite_cobble", "underch:amphibolite_mossy_cobble"},
+	{"underch:schist_cobble", "underch:schist_mossy_cobble"},
+	{"default:cobble", "default:mossycobble"},
+	{"underch:slate_cobble", "underch:slate_mossy_cobble"},
+	{"underch:vindesite_cobble", "underch:vindesite_mossy_cobble"},
 }
 
 minetest.register_tool("staffs:humiditystaff", {
@@ -217,41 +242,41 @@ minetest.register_craft({
 
 colorstaff = {}
 colorstaff.nodes = {
-    {"wool:black", "wool:blue"},
-    {"wool:blue", "wool:brown"},
-    {"wool:brown", "wool:cyan"},
-    {"wool:cyan", "wool:dark_green"},
-    {"wool:dark_green", "wool:dark_grey"},
-    {"wool:dark_grey", "wool:green"},
-    {"wool:green", "wool:grey"},
-    {"wool:grey", "wool:magenta"},
-    {"wool:magenta", "wool:orange"},
-    {"wool:orange", "wool:pink"},
-    {"wool:pink", "wool:red"},
-    {"wool:red", "wool:violet"},
-    {"wool:violet", "wool:white"},
-    {"wool:white", "wool:yellow"},
-    {"wool:yellow", "wool:black"},
-    {"bakedclay:black", "bakedclay:blue"},
-    {"bakedclay:blue", "bakedclay:brown"},
-    {"bakedclay:brown", "bakedclay:cyan"},
-    {"bakedclay:cyan", "bakedclay:dark_green"},
-    {"bakedclay:dark_green", "bakedclay:dark_grey"},
-    {"bakedclay:dark_grey", "bakedclay:green"},
-    {"bakedclay:green", "bakedclay:grey"},
-    {"bakedclay:grey", "bakedclay:magenta"},
-    {"bakedclay:magenta", "bakedclay:orange"},
-    {"bakedclay:orange", "bakedclay:pink"},
-    {"bakedclay:pink", "bakedclay:red"},
-    {"bakedclay:red", "bakedclay:violet"},
-    {"bakedclay:violet", "bakedclay:white"},
-    {"bakedclay:white", "bakedclay:yellow"},
-    {"bakedclay:yellow", "bakedclay:black"},
-    {"default:glass", "xtraores_rainbow:glass"},
-    {"default:wood", "xtraores_rainbow:wood"},
-    {"ethereal:illumishroom", "ethereal:illumishroom2"},
-    {"ethereal:illumishroom2", "ethereal:illumishroom3"},
-    {"ethereal:illumishroom3", "ethereal:illumishroom"},
+	{"wool:black", "wool:blue"},
+	{"wool:blue", "wool:brown"},
+	{"wool:brown", "wool:cyan"},
+	{"wool:cyan", "wool:dark_green"},
+	{"wool:dark_green", "wool:dark_grey"},
+	{"wool:dark_grey", "wool:green"},
+	{"wool:green", "wool:grey"},
+	{"wool:grey", "wool:magenta"},
+	{"wool:magenta", "wool:orange"},
+	{"wool:orange", "wool:pink"},
+	{"wool:pink", "wool:red"},
+	{"wool:red", "wool:violet"},
+	{"wool:violet", "wool:white"},
+	{"wool:white", "wool:yellow"},
+	{"wool:yellow", "wool:black"},
+	{"bakedclay:black", "bakedclay:blue"},
+	{"bakedclay:blue", "bakedclay:brown"},
+	{"bakedclay:brown", "bakedclay:cyan"},
+	{"bakedclay:cyan", "bakedclay:dark_green"},
+	{"bakedclay:dark_green", "bakedclay:dark_grey"},
+	{"bakedclay:dark_grey", "bakedclay:green"},
+	{"bakedclay:green", "bakedclay:grey"},
+	{"bakedclay:grey", "bakedclay:magenta"},
+	{"bakedclay:magenta", "bakedclay:orange"},
+	{"bakedclay:orange", "bakedclay:pink"},
+	{"bakedclay:pink", "bakedclay:red"},
+	{"bakedclay:red", "bakedclay:violet"},
+	{"bakedclay:violet", "bakedclay:white"},
+	{"bakedclay:white", "bakedclay:yellow"},
+	{"bakedclay:yellow", "bakedclay:black"},
+	{"default:glass", "xtraores_rainbow:glass"},
+	{"default:wood", "xtraores_rainbow:wood"},
+	{"ethereal:illumishroom", "ethereal:illumishroom2"},
+	{"ethereal:illumishroom2", "ethereal:illumishroom3"},
+	{"ethereal:illumishroom3", "ethereal:illumishroom"},
 }
     
 minetest.register_tool("staffs:colorstaff", {
