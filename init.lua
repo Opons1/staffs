@@ -5,7 +5,7 @@ landscapingstaff.nodes = {
 	{"default:dirt_with_grass", "ethereal:green_moss"},
 	{"default:dirt_with_dry_grass", "default:dirt"},
 	{"default:dirt_with_coniferous_litter", "default:dirt"},
-	{"default:dirt_with_snow", "default:cold_dirt"},
+	{"default:dirt_with_snow", "ethereal:cold_dirt"},
 	{"default:permafrost", "default:permafrost_with_moss"},
 	{"default:permafrost_with_moss", "default:permafrost"},
 	{"ethereal:grove_dirt", "ethereal:prairie_dirt"},
