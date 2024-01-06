@@ -16,7 +16,7 @@ landscapingstaff.nodes = {
 	{"ethereal:fiery_dirt", "ethereal:fiery_moss"},
 	{"ethereal:gray_dirt", "ethereal:gray_moss"},
 	{"ethereal:mushroom_dirt", "ethereal:mushroom_moss"},
-        {"ethereal:dry_dirt", "default:dirt_with_grass"},
+	{"ethereal:dry_dirt", "default:dirt_with_grass"},
 }
 
 minetest.register_tool("staffs:landscapingstaff", {
@@ -192,7 +192,7 @@ humiditystaff.nodes = {
 	{"underch:peridotite_cobble", "underch:peridotite_mossy_cobble"},
 	{"underch:phonolite_cobble", "underch:phonolite_mossy_cobble"},
 	{"underch:phylite_cobble", "underch:phylite_mossy_cobble"},
-	{"underch:quartzite_cobble", "underch:amphibolite_mossy_cobble"},
+	{"underch:quartzite_cobble", "underch:quartzite_mossy_cobble"},
 	{"underch:schist_cobble", "underch:schist_mossy_cobble"},
 	{"underch:sichamine_cobble", "underch:sichamine_mossy_cobble"},
 	{"default:cobble", "default:mossycobble"},
