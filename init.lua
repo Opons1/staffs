@@ -118,7 +118,7 @@ core.register_craft({
 	}
 })
 
-local growstaff_uses
+local growstaff_uses = 100
 
 core.register_tool("staffs:growstaff", {
 	description = "Super-Grow Staff",
@@ -170,7 +170,7 @@ core.register_tool("staffs:growstaff2", {
 				return
 			end
 			
-			if bonemeal:on_use(pos, 3) then
+			if bonemeal:on_use(pos, 4) then
 				itemstack:add_wear(65535 / growstaff_uses) 
 			end
 			return itemstack
@@ -190,9 +190,9 @@ core.register_craft({
 core.register_craft({
 	output = "staffs:growstaff2",
 	recipe = {
-		{"bonemeal:fertiliser", "birthstones:alexandrite", "bonemeal:fertiliser"},
+		{"gemeric:aoe_rune", "birthstones:alexandrite", "gemeric:aoe_rune"},
 		{"birthstones:alexandrite", "staffs:growstaff", "birthstones:alexandrite"},
-		{"bonemeal:fertiliser", "birthstones:alexandrite", "bonemeal:fertiliser"}
+		{"gemeric:aoe_rune", "birthstones:alexandrite", "gemeric:aoe_rune"}
 	}
 })
 
