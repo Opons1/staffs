@@ -10,7 +10,7 @@ local function convert(itemstack, user, pos, nodelist, uses)
 	local prenode = core.get_node(pos).name
 	local nodename = nodelist[prenode]
 
-	if nodename then
+	if nodename and core.registered_nodes[nodename] then
 		core.swap_node(pos, {name = nodename})
 		itemstack:add_wear(65535 / uses)
 		return itemstack
